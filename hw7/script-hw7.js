@@ -8,7 +8,7 @@
 console.log(window.navigator);
 console.log(window.location);
 
-console.log(`На компьютере с ОС ${navigator.platform} с помощью браузера ${navigator.appCodeName} я открыл страничку ${location.href}`);
+console.log(`На компьютере с ОС ${navigator.platform} с помощью браузера ${navigator.userAgent} я открыл страничку ${location.href}`);
 
 
 
@@ -23,15 +23,12 @@ console.log(`На компьютере с ОС ${navigator.platform} с помо
 // 2.1. Вывести в консоль каждое из имен (содержимое каждого li).
 // 2.2. Поменять имена в списке выше на числа от 0 по порядку (0, 1, 2 и т.д.)
 
-const allNames = document.querySelectorAll('ul li');
+const allNames = document.querySelectorAll('#list li');
 
-for(element of allNames){
-    console.log(element.textContent);
-}
-
-for(let i = 0; i < allNames.length; i++){
-    console.log(i);
-}
+allNames.forEach((item, index) => {
+    console.log(item.textContent);
+    item.textContent = index;
+})
 
 
 
@@ -60,16 +57,20 @@ document.body.append(paragraph);
 // Задание 5
 // Написать функцию, которая принимает на вход 3 параметра: название тега, название цвета, содержимое. Функция должна сформировать необходимый тег, добавить необходимый стиль с цветом и внести содержимое. Вывести несколько таких сгенерированных тегов в консоль, затем отправить их на страницу.
 
-const tegColorText = (teg, color, text) => {
-
+const createTag = (tagName, color, content) => {
+    const tag = document.createElement(tagName);
+    tag.style.color = color;
+    tag.textContent = content;
+    return tag;
 }
 
+const h1 = createTag('h1', 'red', 'Hello');
+const p = createTag('p', 'green', 'some text ');
+const h2 = createTag('h2', 'yellow', 'yfgtdtrd');
 
-function getRandomInteger(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-    }
-// совсем не понимаю как делать
-
+console.log(h1, p, h2);
+ 
+document.body.append(h1, p, h2);
 
 
 // Задание 6
@@ -80,8 +81,6 @@ const select = document.querySelector('select');
 for(i = 1960; i <= 2020; i++){
     select.innerHTML += `<option>${i}</option>`
 }
-
-console.log(select);
 
 
 
@@ -107,13 +106,13 @@ const clients = [
     {name: "Павел", order: false},
     {name: "Виолетта", order: false},
     {name: "Костя", order: true}
-]
+];
 
 clients.forEach(item => {
     const li = document.createElement('li');
     const status = item.order ? 'оплатил' : 'отменил';
     li.textContent = `Клиент ${item.name} ${status} заказ`;
-    document.querySelector('main ul').append(li);
+    document.querySelector('.order').append(li);
 }) 
 
 
@@ -132,18 +131,13 @@ clients.forEach(item => {
 let linksArr = ['https://www.amazon.com/', 'https://www.youtube.com/', 'https://devby.io/', 'https://www.google.com/', 'https://apple.com/'];
 
 const div = document.createElement('div');
-div.style.backgroundColor = 'aquamarine';
-div.style.padding = '20px';
+div.classList.add('custom-div');
 
-for(item of linksArr){
-    const link = document.createElement('a');
-    link.innerHTML = `<a href="${item}" target="_blank">${item}</a>`;
-    div.append(link);
-}
+linksArr.forEach(item => {
+    div.innerHTML += `<a href="${item}" target="_blank">${item}</a>`;
+})
 
 document.body.append(div);
-console.log(div);
-
 
 
 
@@ -167,17 +161,20 @@ const users = [
     {name:'Den', age: 43}
     ];
 
-const table = users.forEach(item => {
-    const rows = document.createElement('tr');
-    item.style.color = 'red';
-    item.age.style.color = 'blue';  
-    rows.innerHTML = `<td>${item.name}</td><td>${item.age}</td>`
-    
-    document.querySelector('table').append(rows);
-})
+const table = document.querySelector('table');
 
-console.log(table);
-// // не получается добавить цвета
+users.forEach(item => {
+    const tr = document.createElement('tr');
+    const tdName = document.createElement('td');
+    tdName.style.color = 'red';
+    const tdAge = document.createElement('td');
+    tdAge.style.color = 'blue';
+    tdName.textContent = item.name;
+    tdAge.textContent = item.age;
+    tr.append(tdName);
+    tr.append(tdAge);
+    table.append(tr);
+   })
 
 
 
@@ -193,7 +190,7 @@ const listUl = document.querySelector('ul');
 listUl.className = 'list';
 
 const listLi = document.querySelectorAll('ul li:nth-child(odd)');
-listLi.className = 'item';
+listLi.forEach(item => item.className = 'item');
 
 const allA = document.querySelectorAll('a');
-allA.className = 'custom-link';
+allA.forEach(item => item.className = 'custom-link');
