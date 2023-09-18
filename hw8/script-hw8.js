@@ -54,29 +54,30 @@ sendOrder.addEventListener('submit', (event) => {
 
 const form = document.querySelector('.calc');
 const select = form.querySelector('select');
-const options = select.querySelectorAll('option');
+const options = form.querySelectorAll('option');
 const firstNumber = form.querySelector('.first-number');
-const secondNumber = form.querySelector('second-number');
+const secondNumber = form.querySelector('.second-number');
 const result = document.querySelector('div');
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    if(firstNumber === undefined){
-        result.innerHTML = 'Введите первое число';
-    } else if(secondNumber === undefined){
-        result.innerHTML = 'Введите второе число';
-    } else if(select.value === '+'){
-        result.innerHTML = `${firstNumber} + ${secondNumber}`;
+    if(select.value === '+'){
+        result.textContent = +firstNumber.value + +secondNumber.value;
     } else if(select.value === '-'){
-        result.innerHTML = `${firstNumber} - ${secondNumber}`;
+        result.textContent = +firstNumber.value - +secondNumber.value;
     } else if(select.value === '*'){
-        result.innerHTML = `${firstNumber} * ${secondNumber}`;
+        result.textContent = +firstNumber.value * +secondNumber.value;
     } else if(select.value === '/'){
-        result.innerHTML = `${firstNumber} / ${secondNumber}`;
+        result.textContent = +firstNumber.value / +secondNumber.value;
     }
 })
 
-
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const num1 = Number(firstNumber.value);
+    const num2 = Number(secondNumber.value);
+    result.textContent = eval(`${num1}${select.value}${num2}`);
+})
 
 
 
