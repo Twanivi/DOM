@@ -4,17 +4,12 @@
 const inputName = document.querySelector('.name');
 const ul = document.querySelector('ul');
 
-inputName.addEventListener('click', () => {
-    const li = document.createElement('li');
-    ul.append(li);
-   
-})
-
 inputName.addEventListener('keydown', (event) => {
     event.preventDefault();
-    li.textContent = inputName.value;
+    const li = document.createElement('li');
+    li.textContent = event.key;
+    ul.append(li);
 })
-// // // ????????????????
 
 
 
@@ -43,9 +38,9 @@ const ul = document.querySelector('ul');
 sendOrder.addEventListener('submit', (event) => {
     event.preventDefault();
     const li = document.createElement('li');
-    ul.append(li);
     li.textContent = inputOrder.value;
     inputOrder.value = '';
+    ul.append(li);
 })
 
 
