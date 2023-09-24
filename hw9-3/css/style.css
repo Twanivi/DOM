@@ -1,0 +1,86 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.side-panel {
+  position: fixed;
+  width: 0px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  transition: 0.8s;
+}
+.side-panel .container {
+  max-width: 350px;
+  margin: auto;
+}
+.side-panel .container button {
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 30px;
+  background-color: white;
+  text-decoration: none;
+  color: #000;
+  padding: 15px 20px;
+  font-size: 35px;
+  font-weight: bold;
+}
+.side-panel .container nav {
+  padding-top: 120px;
+}
+.side-panel .container nav li {
+  margin-bottom: 20px;
+}
+.side-panel .container nav li a {
+  text-decoration: none;
+  color: gray;
+  font-size: 40px;
+}
+
+.side-panel.side-panel-open {
+  width: 400px;
+}
+
+main {
+  padding: 10px;
+}
+main .container {
+  position: relative;
+  width: 95%;
+}
+main .container .burger {
+  background-image: url(../images/menu.svg);
+  background-color: black;
+  background-size: 35%;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+main .container .h1-normal {
+  padding-top: 100px;
+  margin-bottom: 20px;
+  font-size: 50px;
+}
+main .container .h1-normal.move-up {
+  padding-top: 20px;
+}
+main .container p {
+  font-size: 25px;
+  font-weight: bold;
+}
+main .container .burger.closed-burger {
+  opacity: 0;
+  visibility: hidden;
+}
+main .container.move-container {
+  margin-left: 400px;
+}/*# sourceMappingURL=style.css.map */
