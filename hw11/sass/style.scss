@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+body{
+  background-size: cover;
+  background-position: center;
+  transition: background-image .5s;
+}
+
 .container {
   max-width: 1500px;
   margin: 0 auto;
@@ -21,10 +27,11 @@
       margin: 10px 0;
       width: 33%;
       padding: 20px 20px;
+      transition: .5s;
       cursor: pointer;
     }
 
-    img:hover {
+    img:hover, .active{
       border-radius: 4px;
       transform: scale(1.05);
     }
