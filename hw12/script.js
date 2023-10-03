@@ -3,15 +3,11 @@
 
 const names = ['Kate', 'Maksim', 'Diana', 'Anton', 'Sveta'];
 
-const [name1, name2, ...newNames] = names;
+const [name1, name2 = 'alex', ...newNames] = names;
 
 console.log(name1, name2);
 
 newNames.forEach(name => console.log(name));
-
-if(names.lenght < 2){
-    name2 = 'Alex';
-}
 
 
 
@@ -22,11 +18,11 @@ if(names.lenght < 2){
 
 const names = ['Kate', 'Maksim', 'Diana', 'Anton', 'Sveta'];
 
-const takeName = (a, b, c) => {
+const takeName = ([a, b, c]) => {
     console.log(a, b, c);
 }
 
-takeName(...names);
+takeName(names);
 
 
 
@@ -41,13 +37,8 @@ const poles = {
     pole4: -11
 }
 
-const {pole5, pole2, ...fields} = poles;
+const {pole1 = 1, pole2 = 2, ...fields} = poles;
 
-if(!pole5) {
-   pole5 = 1;
-} else if(!pole2) {
-    pole2 = 2;
-}
 
 
 
@@ -59,15 +50,12 @@ if(!pole5) {
 // ПОДСКАЗКА: В этом задании вы должны использовать как оператор "rest", так и оператор "spread".
 
 const meanScore = (...arr) => {
-    arr.forEach(item => {
-        if(typeof item !== 'number') {
+    if(!arr.every(item => typeof item === 'number')) {
             console.error('Все аргументы в вызове функции должны быть числами!');
-        }
-    })
+    }
+    
     const sum = arr.reduce((acc, item) => acc + item, 0);
     return (sum / arr.length).toFixed(2);
 }
 
-meanScore(7, 14, 20.906, 0.034);
-console.log(meanScore);
-
+meanScore(7, 14, 20.906, 0.034, 'time');
