@@ -1,7 +1,6 @@
 const row = document.querySelector('.row');
 
 const renderCard = (arrayCards) => { 
-console.log(arrayCards);
   
   const flag = arrayCards.flags.svg;
   const nameOf = arrayCards.name.official;
@@ -32,10 +31,6 @@ fetch('https://restcountries.com/v3.1/all')
   .then((array) => {
     
     for(let i = 0; i <= array.length; i += 10){
-      console.log(array[i]);
-      
       renderCard(array[i]);
-    
-  }
-    
+  } 
 });
