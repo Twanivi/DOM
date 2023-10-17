@@ -5,15 +5,64 @@
 }
 
 #widget{
-    max-width: 800px;
+    max-width: 650px;
     margin: auto;
+    font-family: Tahoma;
+    font-size: 26px;
+
+    p{
+        margin-bottom: 10px;
+      } 
+    
     #current{
-        background-color: rgb(63, 174, 248);
+      background-color: rgb(94, 132, 202);
+      padding: 15px;
+      color: white;
       
+      .center-info{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img{
+            height: 70px;
+        }
+
+        .wind{
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0 20px;
+        }
+      } 
     }
 
     #forecast{
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+
+        .forecast-wrapper{
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            padding: 15px 25px;
+            border: 1px solid rgb(94, 132, 202);
+
+            .full-data{
+
+                text-align: start;
+            }
+
+            .img-falldown{
+
+                img{
+                    height: 70px;
+                }
+            }
+
+            .forecast-degree{
+                margin-left: 60px;
+            }
+    }
     }
 }
