@@ -33,7 +33,7 @@ function renderRow(time, date, img, temp){
   
   const dateToday = date.slice(0, 10);
   const times = time.slice(11);
-  
+
   forecast.insertAdjacentHTML('beforeend', `
   <div class="forecast-wrapper">
   <div class="full-data">
@@ -51,12 +51,10 @@ function renderRow(time, date, img, temp){
 fetch('https://api.openweathermap.org/data/2.5/forecast?q=Hadera&appid=fd6e03c432c2c8e83f329c5e40ae9b66&units=metric')
   .then((response) => response.json())
   .then((obj) => {
-    console.log(obj);
     
     renderMain(obj.city.name, obj.list[0].dt_txt, obj.list[0].weather[0].icon, obj.list[0].weather[0].description, obj.list[0].main.temp, obj.list[0].wind.speed);
 
     const array = obj.list;
-    console.log(array);
 
     for(let i = 0; i < 40; i += 8){
         console.log(array[i]);
