@@ -57,7 +57,7 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?q=Hadera&appid=fd6e03c43
     const array = obj.list;
 
     for(let i = 0; i < 40; i += 8){
-        console.log(array[i]);
+        
         renderRow(array[i].dt_txt, array[i].dt_txt, array[i].weather[0].icon, array[i].main.temp);
     }
 });
