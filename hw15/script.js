@@ -68,8 +68,7 @@ fetch('https://restcountries.com/v3.1/all')
   .then((response) => response.json())
   .then((array) => {
   
-    const [...arrayNew] = array;
-    for(let i = 0; i <= arrayNew.length; i += 10){
-      renderCard(arrayNew[i].flags.svg, arrayNew[i].name.official, arrayNew[i].region, arrayNew[i].population, arrayNew[i].languages, arrayNew[i].currencies);
+    for(let i = 0; i <= array.length; i += 10){
+      renderCard(array[i].flags.svg, array[i].name.official, array[i].region, array[i].population, array[i].languages, array[i].currencies);
   } 
 });
