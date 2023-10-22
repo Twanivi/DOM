@@ -1,0 +1,33 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+form {
+  background-color: rgb(65, 61, 61);
+  padding: 20px;
+}
+form input {
+  padding: 10px;
+  vertical-align: middle;
+}
+form button {
+  padding: 8px;
+  background-color: yellow;
+  font-size: 18px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.player {
+  background-color: yellow;
+  padding: 20px;
+  height: 60vh;
+}
+
+.preview {
+  background-color: gray;
+  padding: 20px;
+  height: 30vh;
+}/*# sourceMappingURL=style.css.map */
