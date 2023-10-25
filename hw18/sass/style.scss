@@ -1,0 +1,12 @@
+body{
+    display: flex;
+}
+
+
+.card-body{
+    display: none;
+}
+
+.card-body.active{
+    display: block;
+}
