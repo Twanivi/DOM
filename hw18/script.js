@@ -32,6 +32,7 @@ const renderInfo = (names, userName, userAddress, companies, mail) => {
     `
 )
     divInfo.firstElementChild.classList.add('active');
+    
 }
 
 
@@ -48,7 +49,22 @@ const usersInfo = async () => {
             renderUsers(element.name);
             renderInfo(element.name, element.username, element.address, element.company.name, element.email);
         });
-       
+
+        const allLi = document.querySelectorAll('.list-group-item');
+        const allLiArray = Array.from(allLi);
+        const allLiText = allLiArray.map(item => item.textContent);
+        const allInfo = document.querySelectorAll('.card-body');
+
+        ul.addEventListener('click', (event) => {
+        if(event.target.matches('.list-group-item')){        
+            allLiArray.forEach(li => li.classList.remove('active'));
+            event.target.classList.add('active');
+            const activeIndex = allLiArray.indexOf(event.target);
+            allInfo.forEach(info => info.classList.remove('active'));
+            allInfo[activeIndex].classList.add('active');
+            
+        }
+})
     } catch (error){
         console.error(error);
     }
@@ -56,16 +72,4 @@ const usersInfo = async () => {
 
 usersInfo();
 
-const allLi = document.querySelectorAll('.list-group-item');
-const allInfo = document.querySelectorAll('.card-body');
 
-ul.addEventListener('click', (event) => {
-    if(event.target.matches('.list-group-item')){
-        allLi.forEach(li => li.classList.remove('active'));
-        event.target.classList.add('active');
-        const activeIndex = allLi.indexOf(event.target);
-        allInfo.forEach(info => info.classList.remove('active'));
-        allInfo[activeIndex].classList.add('active');
-        
-    }
-})
