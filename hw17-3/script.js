@@ -18,12 +18,11 @@ const renderPreview = (allPreview) => {
         preview.insertAdjacentHTML('beforeend', `
         <img src="${element.snippet.thumbnails.default.url}" alt="${element.snippet.title}" data-preview-id="${element.id.videoId}">
         `)
-    });
+    })
 }
 
 form.addEventListener('submit', async (event) => {
     try{
-
     event.preventDefault();
     const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyAOYg3N8nZL5qRCphIzenoFMHT990aOUu4&q=${input.value}&type=video`;
     input.value = '';
@@ -35,24 +34,26 @@ form.addEventListener('submit', async (event) => {
     const findVideo = await response.json();
 
     renderPlayer(findVideo.items[0].id.videoId);
-    renderPreview(findVideo.items)
+    renderPreview(findVideo.items);
 
-    } catch (error){
+    preview.addEventListener('click', (event) => {
+            
+        const allImg = document.querySelectorAll('img');
+        const imgArray = Array.from(allImg);
+        const allImgSrc = imgArray.map(item => item.src);
+        
+        if(event.target.matches('img')){
+            const activeId = imgArray.indexOf(event.target);
+            renderPlayer(findVideo.items[activeId].id.videoId);
+        }   
+    })
+     } catch (error){
         console.error(error)
     }
 })
 
 
-preview.addEventListener('click', async (event) => {
-    try{
-        const choosePreviews = event.target;
-        const choicedPreview = choosePreviews.closest(event.dataset);
-        player.textContent = '';
 
-    } catch (error){
-        console.error(error)
-    }
-})
 
 
 
