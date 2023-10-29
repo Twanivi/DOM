@@ -48,10 +48,9 @@ function renderRow(time, date, img, temp){
   `)
 }
 
-
-  
-
-fetch('https://api.openweathermap.org/data/2.5/forecast?q=Hadera&appid=5125c926221ca6cd9fc6ad63039f6932&units=metric')
+navigator.geolocation.getCurrentPosition(
+  function(position){
+fetch(`http://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=5125c926221ca6cd9fc6ad63039f6932`)
   .then((response) => response.json())
   .then((obj) => {
     
@@ -63,13 +62,5 @@ fetch('https://api.openweathermap.org/data/2.5/forecast?q=Hadera&appid=5125c9262
         
         renderRow(array[i].dt_txt, array[i].dt_txt, array[i].weather[0].icon, array[i].main.temp);
     }
-
-    navigator.geolocation.getCurrentPosition(
-      function(position){
-    fetch('http://api.openweathermap.org/data/2.5/forecast?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&appid=5125c926221ca6cd9fc6ad63039f6932')
-    .then((response) => response.json())
-    .then((obj) => console.log(obj))
-      })
-    
 })
-
+  })
