@@ -1,46 +1,47 @@
-const url = 'https://open.er-api.com/v6/latest/ILS'
+const url = 'https://open.er-api.com/v6/latest/ILS';
+const input = document.querySelector('input');
+const select = document.querySelector('select');
+const result = document.querySelector('p');
 
-class Converter {
-    constructor (url){
+
+class CurrencyConverter {
+    constructor (baseCurrency, rates){
         this.url = url;
-        this.html = null;
-        // this.result = result;
+        this.baseCurrency = baseCurrency;
+        this.rates = rates;
+
     }
 
-    async render(){
-       const response = await fetch(this.url);
-       const data = await response.json();
-        console.log(data);
-        this.html =  document.body.insertAdjacentHTML('beforeend', `
-        <label>ILS:</label>
-    <input type="text">
-    <label>to:</label>
-    <select name="currency">
-        <option value="${data.rates.BYN}" selected>BYN</option>
-        <option value="${data.rates.RUB}">RUB</option>
-        <option value="${data.rates.EUR}">EUR</option>
-        <option value="${data.rates.USD}">USD</option>
-        <option value="${data.rates.CNY}">CNY</option>
-    </select>
-    <div>
-        <p>${this.result}</p>
-    </div>
-        `);
-        const input = document.querySelector('input');
-        const optionAll = document.querySelectorAll('option');
+    async converter(quantity, targetCurrency){
+        try{
+            const response = await fetch(this.url);
+            if(!response.ok){
+                throw new Error ('Произошла ошибка')
+            }
+        const data = await response.json();
 
-        const optionsArray = Array.from(optionAll)
-        const optionsValues = optionsArray.map(option => option.value);
-        console.log(optionsArray.selected);
-        input.addEventListener('keyup', () => {
-            if(input.value && optionsValues.selected)
-            this.result = +input.value * +optionsValues.selected;
+        input.addEventListener('keyup', (event) => {
+            event.preventDefault();
+            const allCurrency = Object.values(data.rates);
+            this.rates = allCurrency; // все числовые значения
+            this.baseCurrency = allCurrency[0];
+            
+            const arrayCur = Object.keys(data.rates)
+            targetCurrency = arrayCur.indexOf(select.value)
+            quantity = event.target.value * this.baseCurrency;
+            
+            return console.log(result.innerHTML = (quantity * this.rates[targetCurrency]).toFixed(2));
+            
         })
+
+        
+        } catch (error){
+            console.error(error);
+        }
+        
     }
-
-
 }
 
-const resultConverter = new Converter('https://open.er-api.com/v6/latest/ILS');
+const resultConverter = new CurrencyConverter('https://open.er-api.com/v6/latest/ILS');
 
-resultConverter.render();
+resultConverter.converter();
