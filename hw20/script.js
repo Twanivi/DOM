@@ -23,14 +23,14 @@ class CurrencyConverter {
         input.addEventListener('keyup', (event) => {
             event.preventDefault();
             const allCurrency = Object.values(data.rates);
-            this.rates = allCurrency; // все числовые значения
+            this.rates = allCurrency; 
             this.baseCurrency = allCurrency[0];
             
             const arrayCur = Object.keys(data.rates)
             targetCurrency = arrayCur.indexOf(select.value)
             quantity = event.target.value * this.baseCurrency;
             
-            return console.log(result.innerHTML = (quantity * this.rates[targetCurrency]).toFixed(2));
+            return result.innerHTML = (quantity * this.rates[targetCurrency]).toFixed(2);
             
         })
 
