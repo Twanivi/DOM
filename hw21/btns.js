@@ -7,24 +7,32 @@ const data = [
     ];
 
 export default class BtnsRendered {
-    constructor(id, label, user){
+    constructor(id, label, user, data){
             this.id = id;
             this.label = label;
             this.user = user;
+            this.data = data;
     }
     
     onClick(){
-            this.user = data.user.name;
+        data.forEach(e => {
+            this.user = data.e.user.name;
             console.log(this.user);
+        })
+            
     }
     
     render(){
-            const btn = document.createElement('button');
-            btn.innerHTML = data.user.namer;
-            this.id = data.id;
-            this.label = data.label;
-            btn.onclick = this.onClick();
-            return btn;
+            data.forEach(item => {
+            this.id = data.item.id;
+            this.label = data.item.label;
+            item.addEventListener('submit', (event) => {
+                event.preventDefault();
+                this.onClick();
+            }) 
+            container.append(item);
+            })
+            
     }
 }
     

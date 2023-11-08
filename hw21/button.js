@@ -15,7 +15,10 @@ export default class Button {
         btn.innerHTML = user.name;
         this.id = btn.id;
         this.label = btn.label;
-        btn.onclick = this.onClick();
+        btn.addEventListener('submit', (event) => {
+            event.preventDefault();
+            this.onClick();
+        }) 
         return btn;
     }
 }
