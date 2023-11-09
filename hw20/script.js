@@ -20,6 +20,19 @@ class CurrencyConverter {
             }
         const data = await response.json();
 
+        select.addEventListener('change', () => {
+            
+            const allCurrency = Object.values(data.rates);
+            this.rates = allCurrency; 
+            this.baseCurrency = allCurrency[0];
+            
+            const arrayCur = Object.keys(data.rates)
+            targetCurrency = arrayCur.indexOf(select.value)
+            quantity = input.value * this.baseCurrency;
+            
+            return result.innerHTML = (quantity * this.rates[targetCurrency]).toFixed(2);
+        })
+
         input.addEventListener('keyup', (event) => {
             event.preventDefault();
             const allCurrency = Object.values(data.rates);
@@ -34,6 +47,7 @@ class CurrencyConverter {
             
         })
 
+        
         
         } catch (error){
             console.error(error);
