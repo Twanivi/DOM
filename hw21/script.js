@@ -25,16 +25,6 @@ class Button {
     }
 }
 
-
-
-// const user1 = new Button(data.id, data.label, data);
-// const user2 = new Button(2, 'Button 2', 'Jane');
-// const user3 = new Button(3, 'Button 3', 'Kyle');
-
-// user1.render();
-// user2.render();
-// user3.render();
-
 //2
 const container = document.getElementById("wrapper");
 
