@@ -1,0 +1,50 @@
+// 1
+
+class Button {
+    constructor(id, label, user){
+        this.id = id;
+        this.label = label;
+        this.user = user;
+    }
+
+    onClick(){
+        console.log(this.user);
+    }
+
+    render(){
+        const btn = document.createElement('button');
+        btn.textContent = this.user;
+        document.body.append(btn);
+        
+        this.id = btn.id;
+        this.label = btn.label;
+        btn.addEventListener('click', () => {
+            this.onClick();
+        })
+        return btn;
+    }
+}
+
+
+
+// const user1 = new Button(data.id, data.label, data);
+// const user2 = new Button(2, 'Button 2', 'Jane');
+// const user3 = new Button(3, 'Button 3', 'Kyle');
+
+// user1.render();
+// user2.render();
+// user3.render();
+
+//2
+const container = document.getElementById("wrapper");
+
+const data = [
+    { id: 1, label: "Button 1", user: { name: "Pit" } },
+    { id: 2, label: "Button 2", user: { name: "Jane" } },
+    { id: 3, label: "Button 3", user: { name: "Kyle" } }
+    ];
+
+    data.forEach(item => {
+               const users = new Button(item.id, item.label, item.user.name);
+        container.append(users.render())
+    })
